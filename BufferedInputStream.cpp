@@ -31,7 +31,7 @@ size_t BufferedInputStream::readBytes(char * buf, size_t length) {
 	return i-1;
 }
 
-size_t BufferedInputStream::readBytesUntil( char terminator, char *buffer, size_t length) {
+size_t BufferedInputStream::readBytesUntil( char terminator, char *buf, size_t length) {
 	int i;
 	
 	for(i=0; i<length && pos<size; i++, pos++) {
@@ -47,13 +47,13 @@ size_t BufferedInputStream::readBytesUntil( char terminator, char *buffer, size_
 }
 
 String BufferedInputStream::readString() {
-	strl = strlen(&buffer[pos]);
+	int strl = strlen(&buffer[pos]);
 	if(pos+strl>size) {
-		return (String)"";
+		return String("");
 	}
 	pos+=strlen+1;
 	if(pos>=size) buffer_overflow = true;
-	return (String)&buffer[pos];
+	return String((char *)&buffer[pos]);
 }
 
 
