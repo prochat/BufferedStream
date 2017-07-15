@@ -38,7 +38,8 @@ public:
   // FAKE
 
   virtual int available() { return size-pos; }
-  bool overflow() { bool ret = buffer_overflow; buffer_overflow = false; return ret; }  int peek() { return buffer[pos]; }
+  bool overflow() { bool ret = buffer_overflow; buffer_overflow = false; return ret; }  
+  int peek() { return buffer[pos]; }
   virtual int read();
   virtual size_t readBytes(char * buf, size_t length);
   virtual size_t readBytes( uint8_t *buffer, size_t length) { return readBytes((char *)buffer, length); }
